@@ -1,0 +1,16 @@
+.order {
+    display: flex;
+    flex-direction: column;
+}
+
+select {
+    max-width: 100px;
+}
+
+textarea {
+    max-width: 200px;
+}
+
+button {
+    max-width: 100px;
+}
