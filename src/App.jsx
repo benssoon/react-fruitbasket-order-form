@@ -1,70 +1,208 @@
 
 import './App.css'
 import React from 'react';
+import {useState} from 'react';
 
 function App() {
+    // State setup for whole form
+    const [formState, setFormState] = useState({
+        firstName: '',
+        lastName: '',
+        age: 0,
+        postcode: '',
+        deliveryFrequency: '',
+        deliveryTime: '',
+        comment: '',
+        terms: '',
+    });
+
+    // This function takes gets an event passed to it
+    // as a parameter, inside useState (if I understand this correctly).
+    function handleChange(e) {
+        const changedFieldName = e.target.name;
+        const newValue = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+
+        setFormState({
+            ...formState,
+            [changedFieldName]: newValue,
+        });
+        console.log(newValue);
+    }
+
     const [amountStrawberries, setAmountStrawberries] = React.useState(0);
     const [amountBananas, setAmountBananas] = React.useState(0);
     const [amountApples, setAmountApples] = React.useState(0);
     const [amountKiwis, setAmountKiwis] = React.useState(0);
     return (
-        <div className="counters">
-            <div className="counter">
-                <h2>🍓Aardbeien</h2>
+
+        <>
+            <div className="counters">
+                <div className="counter">
+                    <h2>🍓Aardbeien</h2>
+                    <button
+                        onClick={() => setAmountStrawberries(amountStrawberries-1<0 ? 0 : amountStrawberries-1)}
+                    >-</button>
+                    <p>{amountStrawberries}</p>
+                    <button
+                        onClick={() => setAmountStrawberries(amountStrawberries + 1)}
+                    >+</button>
+                </div>
+                <div className="counter">
+                    <h2>🍌Bananen</h2>
+                    <button
+                        onClick={() => setAmountBananas(amountBananas-1<0 ? 0 : amountBananas-1)}
+                    >-</button>
+                    <p>{amountBananas}</p>
+                    <button
+                        onClick={() => setAmountBananas(amountBananas + 1)}
+                    >+</button>
+                </div>
+                <div className="counter">
+                    <h2>🍏Appels</h2>
+                    <button
+                        onClick={() => setAmountApples(amountApples-1<0 ? 0 : amountApples-1)}
+                    >-
+                    </button>
+                    <p>{amountApples}</p>
+                    <button
+                        onClick={() => setAmountApples(amountApples + 1)}
+                    >+
+                    </button>
+                </div>
+
+                <div className="counter">
+                    {/* eslint-disable-next-line react/no-unescaped-entities */}
+                    <h2>🥝Kiwi's</h2>
+                    <button
+                        onClick={() => setAmountKiwis(amountKiwis-1<0 ? 0 : amountKiwis-1)}
+                    >-
+                    </button>
+                    <p>{amountKiwis}</p>
+                    <button
+                        onClick={() => setAmountKiwis(amountKiwis + 1)}
+                    >+
+                    </button>
+                </div>
                 <button
-                    onClick={() => setAmountStrawberries(amountStrawberries-1<0 ? 0 : amountStrawberries-1)}
-                >-</button>
-                <p>{amountStrawberries}</p>
-                <button
-                    onClick={() => setAmountStrawberries(amountStrawberries + 1)}
-                >+</button>
-            </div>
-            <div className="counter">
-                <h2>🍌Bananen</h2>
-                <button
-                    onClick={() => setAmountBananas(amountBananas-1<0 ? 0 : amountBananas-1)}
-                >-</button>
-                <p>{amountBananas}</p>
-                <button
-                    onClick={() => setAmountBananas(amountBananas + 1)}
-                >+</button>
-            </div>
-            <div className="counter">
-                <h2>🍏Appels</h2>
-                <button
-                    onClick={() => setAmountApples(amountApples-1<0 ? 0 : amountApples-1)}
-                >-
-                </button>
-                <p>{amountApples}</p>
-                <button
-                    onClick={() => setAmountApples(amountApples + 1)}
-                >+
-                </button>
+                    onClick={() => {
+                        setAmountStrawberries(0);
+                        setAmountBananas(0);
+                        setAmountApples(0);
+                        setAmountKiwis(0);
+                    }}
+                >Reset</button>
             </div>
 
-            <div className="counter">
-                {/* eslint-disable-next-line react/no-unescaped-entities */}
-                <h2>🥝Kiwi's</h2>
-                <button
-                    onClick={() => setAmountKiwis(amountKiwis-1<0 ? 0 : amountKiwis-1)}
-                >-
-                </button>
-                <p>{amountKiwis}</p>
-                <button
-                    onClick={() => setAmountKiwis(amountKiwis + 1)}
-                >+
-                </button>
-            </div>
-            <button
-                onClick={() => {
-                    setAmountStrawberries(0);
-                    setAmountBananas(0);
-                    setAmountApples(0);
-                    setAmountKiwis(0);
-                }}
-            >Reset</button>
-        </div>
+
+            <form className="order">
+                {/*-----First Name-----*/}
+                <label>
+                    Voornaam
+                    <input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        value={formState.firstName}
+                        onChange={handleChange}
+                    />
+                </label>
+
+                {/*-----Last Name-----*/}
+                <label>
+                    Achternaam
+                    <input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        value={formState.lastName}
+                        onChange={handleChange}
+                    />
+                </label>
+
+                {/*-----Age-----*/}
+                <label>
+                    Leeftijd
+                    <input
+                        type="number"
+                        id="age"
+                        name="age"
+                        value={formState.age}
+                        onChange={handleChange}
+                    />
+                </label>
+
+                {/*-----Postcode-----*/}
+                <label>
+                    Postcode
+                    <input
+                        type="text"
+                        id="postcode"
+                        name="postcode"
+                        value={formState.postcode}
+                        onChange={handleChange}
+                    />
+                </label>
+
+
+                {/*-----Delivery Frequency-----*/}
+                <label htmlFor="deliveryFrequency">Bezorgfrequentie</label>
+                <select
+                    id="deliveryFrequency"
+                    name="deliveryFrequency"
+                    value={formState.deliveryFrequency}
+                    onChange={handleChange}>
+                    <option value="weekly">Iedere week</option>
+                    <option value="biweekly">Om de week</option>
+                    <option value="monthly">Iedere maand</option>
+                </select>
+
+                {/*-----Delivery Time of Day-----*/}
+                <span className="timeOfDay">
+                    <input
+                        type="radio"
+                        id="daytime"
+                        name="deliveryTime"
+                        value="daytime"
+                        checked={formState.deliveryTime === "daytime"}
+                        onChange={handleChange}
+                    />Overdag
+                    <input
+                        type="radio"
+                        id="evening"
+                        name="deliveryTime"
+                        value="evening"
+                        checked={formState.deliveryTime === "evening"}
+                        onChange={handleChange}
+                    />{/* eslint-disable-next-line react/no-unescaped-entities */}
+                    's Avonds
+                </span>
+
+                {/*-----Comment-----*/}
+                <label htmlFor="comment">Opmerking</label>
+                <textarea
+                    id="comment"
+                    name="comment"
+                    value={formState.comment}
+                    onChange={handleChange}
+                />
+
+                {/*-----Terms and Conditions-----*/}
+                <label>
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        name="terms"
+                        checked={formState.terms}
+                        onChange={handleChange}
+                    />
+                    Ik ga akkoord met de voorwaarden
+                </label>
+
+                {/*-----Send-----*/}
+                <button type="submit">Verzend</button>
+            </form>
+        </>
     )
 }
 
-export default App
+export default App;
