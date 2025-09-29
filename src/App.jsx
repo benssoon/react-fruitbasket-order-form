@@ -9,23 +9,29 @@ function App() {
         lastName: '',
         age: 0,
         postcode: '',
+        deliveryFrequency: '',
+        deliveryTime: '',
+        comment: '',
+        terms: '',
     });
 
     // This function takes gets an event passed to it
     // as a parameter, inside useState (if I understand this correctly).
     function handleChange(e) {
+        const changedFieldName = e.target.name;
+        const newValue = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+
         setFormState({
             ...formState,
-            [e.target.name]: e.target.value,
+            [changedFieldName]: newValue,
         });
-        console.log(formState);
-        console.log(e.target.name + ': ' + e.target.value);
+        console.log(newValue);
     }
 
     return (
         <>
             <form className="order">
-                {/*-----Voornaam-----*/}
+                {/*-----First Name-----*/}
 
                 <label>
                     Voornaam
@@ -38,7 +44,7 @@ function App() {
                     />
                 </label>
 
-                {/*-----Achternaam-----*/}
+                {/*-----Last Name-----*/}
                 <label>
                     Achternaam
                     <input
@@ -50,7 +56,7 @@ function App() {
                     />
                 </label>
 
-                {/*-----Leeftijd-----*/}
+                {/*-----Age-----*/}
                 <label>
                     Leeftijd
                     <input
@@ -75,48 +81,61 @@ function App() {
                 </label>
 
 
-                    {/*-----Bezorgfrequentie-----*/}
+                {/*-----Delivery Frequency-----*/}
                 <label htmlFor="deliveryFrequency">Bezorgfrequentie</label>
                 <select
                     id="deliveryFrequency"
-                    name="deliveryFrequency">
+                    name="deliveryFrequency"
+                    value={formState.deliveryFrequency}
+                    onChange={handleChange}>
                     <option value="weekly">Iedere week</option>
                     <option value="biweekly">Om de week</option>
                     <option value="monthly">Iedere maand</option>
                 </select>
-                <span className="pair">
+
+                {/*-----Delivery Time of Day-----*/}
+                <span className="timeOfDay">
                     <input
                         type="radio"
                         id="daytime"
                         name="deliveryTime"
+                        value="daytime"
+                        checked={formState.deliveryTime === "daytime"}
+                        onChange={handleChange}
                     />Overdag
                     <input
                         type="radio"
                         id="evening"
                         name="deliveryTime"
-
+                        value="evening"
+                        checked={formState.deliveryTime === "evening"}
+                        onChange={handleChange}
                     />{/* eslint-disable-next-line react/no-unescaped-entities */}
                     's Avonds
                 </span>
 
-                {/*-----Opmerking-----*/}
+                {/*-----Comment-----*/}
                 <label htmlFor="comment">Opmerking</label>
                 <textarea
                     id="comment"
                     name="comment"
+                    value={formState.comment}
+                    onChange={handleChange}
                 />
 
-                {/*-----Voorwaarden-----*/}
-                <span className="pair">
+                {/*-----Terms and Conditions-----*/}
+                <label>
                     <input
                         type="checkbox"
                         id="terms"
                         name="terms"
+                        checked={formState.terms}
+                        onChange={handleChange}
                     />
-                    <label htmlFor="terms">Ik ga akkoord met de voorwaarden</label>
-                </span>
+                    Ik ga akkoord met de voorwaarden
+                </label>
 
-                {/*-----Verzenden-----*/}
+                {/*-----Send-----*/}
                 <button type="submit">Verzend</button>
             </form>
         </>
