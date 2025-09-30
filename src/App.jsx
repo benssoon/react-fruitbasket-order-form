@@ -8,7 +8,7 @@ import Button from './components/Button/Button.jsx';
 
 function App() {
     // State setup for whole form
-    const initialState = {
+    const initialFormState = {
         firstName: '',
         lastName: '',
         age: 0,
@@ -18,7 +18,7 @@ function App() {
         comment: '',
         terms: '',
     }
-    const [formState, setFormState] = useState(initialState);
+    const [formState, setFormState] = useState(initialFormState);
 
     // This function takes gets an event passed to it
     // as a parameter, inside useState (if I understand this correctly).
