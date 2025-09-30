@@ -5,7 +5,7 @@ import {useState} from 'react';
 
 function App() {
     // State setup for whole form
-    const [formState, setFormState] = useState({
+    const initialState = {
         firstName: '',
         lastName: '',
         age: 0,
@@ -14,7 +14,8 @@ function App() {
         deliveryTime: '',
         comment: '',
         terms: '',
-    });
+    }
+    const [formState, setFormState] = useState(initialState);
 
     // This function takes gets an event passed to it
     // as a parameter, inside useState (if I understand this correctly).
@@ -26,7 +27,35 @@ function App() {
             ...formState,
             [changedFieldName]: newValue,
         });
-        console.log(newValue);
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        const fruits = [
+            {
+                name: "Strawberries",
+                amount: amountStrawberries,
+            },
+            {
+                name: "Bananas",
+                amount: amountBananas,
+            },
+            {
+                name: "Apples",
+                amount: amountApples,
+            },
+            {
+                name: "Kiwis",
+                amount: amountKiwis,
+            },
+        ]
+
+        for (let fruitsKey in fruits) {
+            const fruit = fruits[fruitsKey];
+            console.log(`${fruit.name}: ${fruit.amount}`);
+        }
+
+        console.log(formState)
     }
 
     const [amountStrawberries, setAmountStrawberries] = React.useState(0);
@@ -199,7 +228,10 @@ function App() {
                 </label>
 
                 {/*-----Send-----*/}
-                <button type="submit">Verzend</button>
+                <button
+                    type="submit"
+                    onClick={handleSubmit}
+                >Verzend</button>
             </form>
         </>
     )
