@@ -57,7 +57,7 @@ function App() {
             console.log(`${fruit.name}: ${fruit.amount}`);
         }
 
-        console.log(formState)
+        console.log(formState);
     }
 
     function handleReset() {
@@ -137,23 +137,24 @@ function App() {
 
                 {/*-----Delivery Time of Day-----*/}
                 <span className="timeOfDay">
-                    <input
+                    <Input
+                        label="Overdag"
+                        state={formState}
+                        setState={handleChange}
                         type="radio"
-                        id="daytime"
                         name="deliveryTime"
-                        value="daytime"
-                        checked={formState.deliveryTime === "daytime"}
-                        onChange={handleChange}
-                    />Overdag
-                    <input
+                        value="day"
+                        id="day"
+                    />
+                    <Input
+                        label="'s Avonds"
+                        state={formState}
+                        setState={handleChange}
                         type="radio"
-                        id="evening"
                         name="deliveryTime"
                         value="evening"
-                        checked={formState.deliveryTime === "evening"}
-                        onChange={handleChange}
-                    />{/* eslint-disable-next-line react/no-unescaped-entities */}
-                    's Avonds
+                        id="evening"
+                    />
                 </span>
 
                 {/*-----Comment-----*/}
@@ -166,16 +167,14 @@ function App() {
                 />
 
                 {/*-----Terms and Conditions-----*/}
-                <label>
-                    <input
-                        type="checkbox"
-                        id="terms"
-                        name="terms"
-                        checked={formState.terms}
-                        onChange={handleChange}
-                    />
-                    Ik ga akkoord met de voorwaarden
-                </label>
+                <Input
+                    label="Ik ga akkoord met de voorwaarden"
+                    state={formState}
+                    setState={handleChange}
+                    type="checkbox"
+                    name="terms"
+                    id="terms"
+                />
 
                 {/*-----Send-----*/}
                 <button
