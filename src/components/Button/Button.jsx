@@ -1,9 +1,14 @@
 import './Button.css';
 
-function Button() {
+function Button({onClick, type, label}) {
     return (
         <>
-
+            <button
+                type={type}
+                onClick={onClick}
+            >
+                {label}
+            </button>
         </>
     )
 }

@@ -4,6 +4,7 @@ import React from 'react';
 import {useState} from 'react';
 import Counter from './components/Counter/Counter.jsx';
 import Input from './components/Input/Input.jsx';
+import Button from './components/Button/Button.jsx';
 
 function App() {
     // State setup for whole form
@@ -79,10 +80,7 @@ function App() {
                 <Counter amountFruit={amountBananas} setAmountFruit={setAmountBananas} title="🍌Bananen" />
                 <Counter amountFruit={amountApples} setAmountFruit={setAmountApples} title="🍏Appels" />
                 <Counter amountFruit={amountKiwis} setAmountFruit={setAmountKiwis} title="🥝Kiwi's" />
-                
-                <button
-                    onClick={handleReset}
-                >Reset</button>
+                <Button onClick={handleReset} label="Reset" />
             </div>
 
 
@@ -177,10 +175,11 @@ function App() {
                 />
 
                 {/*-----Send-----*/}
-                <button
+                <Button
                     type="submit"
                     onClick={handleSubmit}
-                >Verzend</button>
+                    label="Verzend"
+                />
             </form>
         </>
     )
