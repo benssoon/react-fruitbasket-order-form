@@ -2,7 +2,8 @@
 import './App.css';
 import React from 'react';
 import {useState} from 'react';
-import Counter from './components/Counter.jsx';
+import Counter from './components/Counter/Counter.jsx';
+import Input from './components/Input/Input.jsx';
 
 function App() {
     // State setup for whole form
@@ -70,15 +71,14 @@ function App() {
     const [amountBananas, setAmountBananas] = React.useState(0);
     const [amountApples, setAmountApples] = React.useState(0);
     const [amountKiwis, setAmountKiwis] = React.useState(0);
-    const [amountFruit, setAmountFruit] = React.useState(0);
     return (
 
         <>
             <div className="counters">
-                <Counter amountFruit={amountFruit} setAmountFruit={setAmountFruit} title="🍓Aardbeien" />
-                <Counter amountFruit={amountFruit} setAmountFruit={setAmountFruit} title="🍌Bananen" />
-                <Counter amountFruit={amountFruit} setAmountFruit={setAmountFruit} title="🍏Appels" />
-                <Counter amountFruit={amountFruit} setAmountFruit={setAmountFruit} title="🥝Kiwi's" />
+                <Counter amountFruit={amountStrawberries} setAmountFruit={setAmountStrawberries} title="🍓Aardbeien" />
+                <Counter amountFruit={amountBananas} setAmountFruit={setAmountBananas} title="🍌Bananen" />
+                <Counter amountFruit={amountApples} setAmountFruit={setAmountApples} title="🍏Appels" />
+                <Counter amountFruit={amountKiwis} setAmountFruit={setAmountKiwis} title="🥝Kiwi's" />
                 
                 <button
                     onClick={handleReset}
@@ -88,53 +88,40 @@ function App() {
 
             <form className="order">
                 {/*-----First Name-----*/}
-                <label>
-                    Voornaam
-                    <input
-                        type="text"
-                        id="firstName"
-                        name="firstName"
-                        value={formState.firstName}
-                        onChange={handleChange}
-                    />
-                </label>
+                <Input
+                    label="Voornaam"
+                    state={formState}
+                    setState={handleChange}
+                    type="text"
+                    name="firstName"
+                />
 
                 {/*-----Last Name-----*/}
-                <label>
-                    Achternaam
-                    <input
-                        type="text"
-                        id="lastName"
-                        name="lastName"
-                        value={formState.lastName}
-                        onChange={handleChange}
-                    />
-                </label>
+                <Input
+                    label="Achternaam"
+                    state={formState}
+                    setState={handleChange}
+                    type="text"
+                    name="lastName"
+                />
 
                 {/*-----Age-----*/}
-                <label>
-                    Leeftijd
-                    <input
-                        type="number"
-                        id="age"
-                        name="age"
-                        value={formState.age}
-                        onChange={handleChange}
-                    />
-                </label>
+                <Input
+                    label="Leeftijd"
+                    state={formState}
+                    setState={handleChange}
+                    type="number"
+                    name="age"
+                />
 
                 {/*-----Postcode-----*/}
-                <label>
-                    Postcode
-                    <input
-                        type="text"
-                        id="postcode"
-                        name="postcode"
-                        value={formState.postcode}
-                        onChange={handleChange}
-                    />
-                </label>
-
+                <Input
+                    label="Postcode"
+                    state={formState}
+                    setState={handleChange}
+                    type="text"
+                    name="postcode"
+                />
 
                 {/*-----Delivery Frequency-----*/}
                 <label htmlFor="deliveryFrequency">Bezorgfrequentie</label>
