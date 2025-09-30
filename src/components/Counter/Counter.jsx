@@ -1,16 +1,19 @@
 import './Counter.css';
+import Button from '../Button/Button.jsx';
 function Counter({amountFruit, setAmountFruit, title}) {
     return (
 
             <div className="counter">
                 <h2>{title}</h2>
-                <button
+                <Button
                     onClick={() => setAmountFruit(amountFruit-1<0 ? 0 : amountFruit-1)}
-                >-</button>
+                    label="-"
+                />
                 <p>{amountFruit}</p>
-                <button
+                <Button
                     onClick={() => setAmountFruit(amountFruit + 1)}
-                >+</button>
+                    label="+"
+                />
             </div>
 
     )
