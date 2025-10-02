@@ -26,10 +26,6 @@ function App() {
     }
     const [formState, setFormState] = useState(initialFormState);
     const [fruitState, setFruitState] = React.useState(initialFruitState);
-    /*const [amountStrawberries, setAmountStrawberries] = React.useState(0);
-    const [amountBananas, setAmountBananas] = React.useState(0);
-    const [amountApples, setAmountApples] = React.useState(0);
-    const [amountKiwis, setAmountKiwis] = React.useState(0);*/
 
     // This function gets an event passed to it
     // as a parameter, inside useState (if I understand this correctly).
@@ -59,38 +55,12 @@ function App() {
     }
 
     function handleReset() {
-        /*setAmountStrawberries(0);
-        setAmountBananas(0);
-        setAmountApples(0);
-        setAmountKiwis(0);*/
         setFruitState(initialFruitState);
     }
 
     function handleSubmit(e) {
         e.preventDefault();
-        /*const fruits = [
-            {
-                name: "Strawberries",
-                amount: amountStrawberries,
-            },
-            {
-                name: "Bananas",
-                amount: amountBananas,
-            },
-            {
-                name: "Apples",
-                amount: amountApples,
-            },
-            {
-                name: "Kiwis",
-                amount: amountKiwis,
-            },
-        ]
-
-        for (let fruitsKey in fruits) {
-            const fruit = fruits[fruitsKey];
-            console.log(`${fruit.name}: ${fruit.amount}`);
-        }*/
+        
         console.log(fruitState);
 
         console.log(formState);
@@ -108,7 +78,6 @@ function App() {
 
         <>
             <div className="counters">
-                {/*<Counter amountFruit={fruitState} setAmountFruit={handleFruitChange} name="strawberries" title="🍓Aardbeien" />*/}
                 <Counter
                     amountFruit={fruitState.strawberries}
                     onChange={delta => handleFruitChange("strawberries", delta)}
